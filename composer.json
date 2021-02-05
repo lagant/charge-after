@@ -1,0 +1,25 @@
+{
+    "name": "chargeafter/module-payment",
+    "description": "N/A",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Taras Lagan",
+            "email": "taras@lagan.com.ua"
+        }
+    ],
+    "require": {
+        "php": "~7.0.13|~7.1.0|~7.2.0",
+        "magento/module-payment": "100.1.*",
+        "magento/module-checkout": "100.1.*",
+        "magento/module-sales": "100.1.*",
+        "magento/module-paypal": "100.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Chargeafter\\Payment\\": "."
+        },
+        "files": [ "registration.php" ]
+    }
+}

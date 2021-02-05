@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_is_active">
+        <observer name="chargeafter_payment_method_is_active" instance="Chargeafter\Payment\Observer\PaymentMethodIsActive" />
+    </event>
+    <event name="payment_method_assign_data_chargeafter">
+        <observer name="chargeafter_gateway_data_assign" instance="Chargeafter\Payment\Observer\DataAssignObserver" />
+    </event>
+</config>
