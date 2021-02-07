@@ -36,7 +36,7 @@ define(
                     const data = this.getData();
                     data.additional_data = {
                       token: result.token,
-                      data: JSON.stringify(result.token),
+                      data: JSON.stringify(result.data),
                     };
                     return $.when(
                       placeOrderAction(data, this.messageContainer)

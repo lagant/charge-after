@@ -9,8 +9,6 @@ use Chargeafter\Payment\Helper\ApiHelper;
 class ConfigProvider implements ConfigProviderInterface
 {
     const CODE = 'chargeafter';
-    const PRODUCTION_CDN_URL = "https://cdn.chargeafter.com";
-    const SANDBOX_CDN_URL = "https://cdn-sandbox.ca-dev.co";
 
     protected $_method;
     protected $_assetRepo;
