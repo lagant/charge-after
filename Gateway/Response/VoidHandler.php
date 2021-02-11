@@ -4,10 +4,10 @@ namespace Chargeafter\Payment\Gateway\Response;
 use Magento\Payment\Gateway\Response\HandlerInterface;
 
 /**
- * Class AuthoriseHandler
+ * Class VoidHandler
  * @package Chargeafter\Payment\Gateway\Response
  */
-class AuthoriseHandler implements HandlerInterface
+class VoidHandler implements HandlerInterface
 {
 
     /**
@@ -16,9 +16,6 @@ class AuthoriseHandler implements HandlerInterface
     public function handle(array $handlingSubject, array $response)
     {
         $payment = $handlingSubject['payment']->getPayment();
-        $payment->setAdditionalInformation('lender', $response['offer']['lender']['name']);
-        $payment->setAdditionalInformation('chargeId', $response['id']);
-        $payment->setTransactionId($response['id']);
-        $payment->setIsTransactionClosed(false);
+        $payment->setTransactionId($response['result']['id']);
     }
 }

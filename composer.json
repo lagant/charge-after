@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "php": "~7.0.13|~7.1.0|~7.2.0",
+        "php": ">=7.3",
+        "ext-json": "*",
         "magento/module-payment": "100.1.*",
         "magento/module-checkout": "100.1.*",
         "magento/module-sales": "100.1.*",

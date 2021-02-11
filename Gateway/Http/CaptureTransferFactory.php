@@ -4,7 +4,7 @@ namespace Chargeafter\Payment\Gateway\Http;
 
 use Magento\Payment\Gateway\Http\TransferInterface;
 
-class AuthorizeTransferFactory extends TransferFactory
+class CaptureTransferFactory extends TransferFactory
 {
     /**
      * @inheritDoc
@@ -12,7 +12,7 @@ class AuthorizeTransferFactory extends TransferFactory
     public function create(array $request): TransferInterface
     {
         return $this->_transferBuilder
-            ->setUri($this->_apiHelper->getApiUrl('/payment/charges', $request['storeId']))
+            ->setUri($this->_apiHelper->getApiUrl("/post-sale/charges/$request[chargeId]/settles", $request['storeId']))
             ->setMethod('POST')
             ->setHeaders([
                 'Authorization'=>'Bearer ' . $this->_apiHelper->getPrivateKey($request['storeId'])

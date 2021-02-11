@@ -1,22 +1,23 @@
 <?php
 
 namespace Chargeafter\Payment\Gateway\Validator;
+
 /**
- * Class AuthorizeResponseValidator
+ * Class ResponseValidator
  * @package Chargeafter\Payment\Gateway\Validator
  */
-class AuthorizeResponseValidator extends ResponseValidator
+class ResponseValidator extends AbstractResponseValidator
 {
     /**
      * @return array
      */
-    protected function getResponseValidators(): array
+    protected function getResponseValidators():array
     {
         return [
             function ($validationSubject) {
                 $response = $validationSubject['response'];
                 return [
-                    key_exists('state', $response) && $response['state'] === 'AUTHORIZED',
+                    !key_exists('code', $response),
                     [$response['message'] ?? __('Braintree error response.')]
                 ];
             }

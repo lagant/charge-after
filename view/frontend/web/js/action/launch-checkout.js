@@ -1,7 +1,3 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 
 /**
  * @api
@@ -55,7 +51,7 @@ define([
             ],*/
             taxAmount: totals.tax_amount,
             shippingAmount: totals.shipping_amount,
-            totalAmount: quote.getCalculatedTotal()
+            totalAmount: totals.base_grand_total,
         };
 
         cartDetails.items = quote.getItems().map(item=>({

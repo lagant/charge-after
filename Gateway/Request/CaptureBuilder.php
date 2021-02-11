@@ -4,7 +4,7 @@ namespace Chargeafter\Payment\Gateway\Request;
 
 use Magento\Payment\Gateway\Request\BuilderInterface;
 
-class AuthorizeBuilder implements BuilderInterface
+class CaptureBuilder implements BuilderInterface
 {
     /**
      * @param array $buildSubject
@@ -14,12 +14,11 @@ class AuthorizeBuilder implements BuilderInterface
     {
         $payment = $buildSubject['payment']->getPayment();
         $order = $buildSubject['payment']->getOrder();
-
         return [
             'storeId'=>$order->getStoreId(),
+            'chargeId'=>$payment->getAdditionalInformation('chargeId'),
             'payload'=>[
-                'confirmationToken'=>$payment->getAdditionalInformation('token'),
-                'merchantOrderId'=>$order->getOrderIncrementId(),
+                'amount'=>(float)$buildSubject['amount'],
             ],
         ];
     }

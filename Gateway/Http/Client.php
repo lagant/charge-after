@@ -2,17 +2,20 @@
 
 namespace Chargeafter\Payment\Gateway\Http;
 
-use Chargeafter\Payment\Helper\ApiHelper;
-use Magento\Framework\HTTP\ZendClient;
-
 use Magento\Framework\HTTP\ZendClientFactory;
+use Magento\Payment\Gateway\Http\ClientException;
 use Magento\Payment\Gateway\Http\ClientInterface;
 
+use Magento\Payment\Gateway\Http\ConverterException;
 use Magento\Payment\Gateway\Http\ConverterInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
+use Zend_Http_Client_Exception;
 
 class Client implements ClientInterface
 {
+    /**
+     * @var ZendClientFactory
+     */
     private $clientFactory;
 
     /**
@@ -20,6 +23,11 @@ class Client implements ClientInterface
      */
     private $converter;
 
+    /**
+     * Client constructor.
+     * @param ZendClientFactory $clientFactory
+     * @param ConverterInterface|null $converter
+     */
     public function __construct(
         ZendClientFactory $clientFactory,
         ConverterInterface $converter = null
@@ -28,28 +36,34 @@ class Client implements ClientInterface
         $this->converter = $converter;
     }
 
-    public function placeRequest(TransferInterface $transferObject)
+    /**
+     * @param TransferInterface $transferObject
+     * @return array
+     * @throws ClientException
+     * @throws ConverterException
+     */
+    public function placeRequest(TransferInterface $transferObject): array
     {
-        /** @var ZendClient $client */
-        $client = $this->clientFactory->create(['uri'=>$transferObject->getUri()])
-            ->setHeaders($transferObject->getHeaders())
-            ->setMethod('POST')
-            ->setRawData(json_encode($transferObject->getBody()), 'application/json');
         try {
+            $client = $this->clientFactory->create(['uri'=>$transferObject->getUri()])
+            ->setHeaders($transferObject->getHeaders())
+            ->setMethod($transferObject->getMethod());
+            if ($transferObject->getMethod()===$client::POST && $transferObject->getBody()) {
+                $client->setRawData(json_encode($transferObject->getBody()), 'application/json');
+            }
+
             $response = $client->request();
 
             $result = $this->converter
                 ? $this->converter->convert($response->getBody())
-                : ['data'=>json_decode($response->getBody())];
-        } catch (\Zend_Http_Client_Exception $e) {
-            throw new \Magento\Payment\Gateway\Http\ClientException(
+                : json_decode($response->getBody(), true);
+        } catch (Zend_Http_Client_Exception $e) {
+            throw new ClientException(
                 __($e->getMessage())
             );
-        } catch (\Magento\Payment\Gateway\Http\ConverterException $e) {
+        } catch (ConverterException $e) {
             throw $e;
         }
-
-
         return $result;
     }
 }

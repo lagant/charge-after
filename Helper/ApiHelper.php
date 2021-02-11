@@ -1,7 +1,9 @@
 <?php
 
 namespace Chargeafter\Payment\Helper;
+
 use Magento\Payment\Gateway\ConfigInterface;
+
 class ApiHelper
 {
     const PRODUCTION_CDN_URL = "https://cdn.chargeafter.com";
@@ -21,9 +23,9 @@ class ApiHelper
         return $this->_config->getValue('environment', $storeId)==='sandbox' ? self::SANDBOX_CDN_URL : self::PRODUCTION_CDN_URL;
     }
 
-    public function getApiUrl($storeId = null)
+    public function getApiUrl($urn=null, $storeId = null)
     {
-        return $this->_config->getValue('environment', $storeId)==='sandbox' ? self::SANDBOX_API_URL : self::PRODUCTION_API_URL;
+        return ($this->_config->getValue('environment', $storeId)==='sandbox' ? self::SANDBOX_API_URL : self::PRODUCTION_API_URL) . $urn;
     }
 
     public function getPublicKey($storeId = null)
