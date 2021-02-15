@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Chargeafter\Payment\Block\PromotionalWidgetBlock" id="chargeafter_payment_promotional_widget">
+        <label>Chargeafter Payment Promotional Widget</label>
+        <description>Chargeafter Payment Promotional Widget</description>
+        <parameters>
+            ...
+        </parameters>
+        <containers>
+            ...
+        </containers>
+    </widget>
+</widgets>
