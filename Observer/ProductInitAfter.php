@@ -18,6 +18,7 @@ class ProductInitAfter implements ObserverInterface
     public function __construct(
         CurrentProductRegistry $currentProductRegistry
     ) {
+        $this->currentProductRegistry = $currentProductRegistry;
     }
     public function execute(Observer $observer)
     {
