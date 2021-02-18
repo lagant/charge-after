@@ -52,16 +52,19 @@ define([
         const totals = quote.totals();
 
         const cartDetails = {
-            /*discounts: [
-                {
-                    name: "Birthday discount",
-                    amount: 20
-                }
-            ],*/
             taxAmount: totals.tax_amount,
             shippingAmount: totals.shipping_amount,
             totalAmount: totals.base_grand_total,
         };
+
+        if(totals.discount_amount){
+            cartDetails.discounts = [
+                {
+                    name: 'DISCOUNT',
+                    amount: Math.abs(totals.discount_amount),
+                }
+            ];
+        }
 
         cartDetails.items = quote.getItems().map(item=>({
             name: item.name,
