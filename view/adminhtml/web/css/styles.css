@@ -1,3 +1,13 @@
+/**
+ * ChargeAfter
+ *
+ * @category    Payment Gateway
+ * @package     Chargeafter_Payment
+ * @copyright   Copyright (c) 2021 ChargeAfter.com
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      taras@lagan.com.ua
+ */
+
 .section-config.chargeafter-payment-section .chargeafter-payment-logo { display:inline-block; vertical-align: middle; margin: 0 20px 0 0px; width: 180px; height:60px; background: url('../images/ChargeAfter_logo.png') no-repeat center / contain; }
 .section-config.chargeafter-payment-section .button-container { float:right; }
 .section-config.chargeafter-payment-section .chargeafter-payment-byline { display: inline-block; vertical-align: middle; width: 50%; }

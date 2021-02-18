@@ -1,4 +1,13 @@
 <?php
+/**
+ * ChargeAfter
+ *
+ * @category    Payment Gateway
+ * @package     Chargeafter_Payment
+ * @copyright   Copyright (c) 2021 ChargeAfter.com
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      taras@lagan.com.ua
+ */
 
 namespace Chargeafter\Payment\Gateway\Http;
 
@@ -11,6 +20,10 @@ use Magento\Payment\Gateway\Http\ConverterInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Zend_Http_Client_Exception;
 
+/**
+ * Class Client
+ * @package Chargeafter\Payment\Gateway\Http
+ */
 class Client implements ClientInterface
 {
     /**
