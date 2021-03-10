@@ -79,12 +79,4 @@ class Radios extends \Magento\Framework\Data\Form\Element\Radios
         $html .= '</div>';
         return $html;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getDisabled()
-    {
-        return parent::getDisabled();
-    }
 }
